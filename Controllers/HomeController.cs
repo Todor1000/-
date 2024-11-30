@@ -17,7 +17,10 @@ namespace Локален_Бюлетински_Помошник.Controllers
         {
             return View();
         }
-
+        public IActionResult Request()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
