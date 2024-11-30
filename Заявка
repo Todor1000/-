@@ -1,24 +1,48 @@
 <div class="text-center">
     <h1 class="display-4">Направяне на заявка</h1>
-    <form>
+
+    <!-- Single form that includes both text input and file input -->
+    <form id="myForm" action="https://www.example.com/admin-submit" method="post" enctype="multipart/form-data" onsubmit="return saveData()">
         <label for="fname">Заявка:</label>
         <input type="text" id="fname" name="fname" size="80"><br><br>
        
-       
         <h2>Сложи снимка</h2>
+        <label for="imageUpload">Избери снимка:</label>
+        <input type="file" id="imageUpload" name="imageUpload" accept="image/*"><br><br>
 
-        <form id="uploadForm">
-            <label for="imageUpload">Избери снимка:</label >
-            <input type="file" id="imageUpload" accept="image/*">
-        </form>
-        
-        <button class="my-button" onclick="performAction()">Изпрати</button>
-         <script>
-        
-        function performAction() {
-                document.getElementById("fname", "imageUpload").submit();
-                this.action = "https://www.example.com/admin-submit";
-    </script>
+        <!-- Submit button -->
+        <button type="submit" class="my-button">Изпрати</button>
     </form>
-    
+
+    <script>
+        // Function to save the text input and file info to localStorage
+        function saveData() {
+            // Save the text input value
+            const fname = document.getElementById("fname").value;
+            localStorage.setItem("fname", fname);
+
+            // Get the file input value (the file name) and store it in localStorage
+            const fileInput = document.getElementById("imageUpload");
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : null;
+            localStorage.setItem("imageUpload", fileName);
+
+            // Optionally, log the saved data
+            console.log("Saved Data:", { fname, imageUpload: fileName });
+
+            return true; // Allow form submission
+        }
+
+        // Optionally, load the data from localStorage when the page is loaded
+        window.onload = function() {
+            // Check if there is stored data in localStorage
+            if (localStorage.getItem("fname")) {
+                document.getElementById("fname").value = localStorage.getItem("fname");
+            }
+
+            if (localStorage.getItem("imageUpload")) {
+                console.log("Previously uploaded file:", localStorage.getItem("imageUpload"));
+                // Optionally, display the stored file name or perform any other action
+            }
+        };
+    </script>
 </div>
