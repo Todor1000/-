@@ -1,0 +1,24 @@
+<div class="text-center">
+    <h1 class="display-4">Направяне на заявка</h1>
+    <form>
+        <label for="fname">Заявка:</label>
+        <input type="text" id="fname" name="fname" size="80"><br><br>
+       
+       
+        <h2>Сложи снимка</h2>
+
+        <form id="uploadForm">
+            <label for="imageUpload">Избери снимка:</label >
+            <input type="file" id="imageUpload" accept="image/*">
+        </form>
+        
+        <button class="my-button" onclick="performAction()">Изпрати</button>
+         <script>
+        
+        function performAction() {
+                document.getElementById("fname", "imageUpload").submit();
+                this.action = "https://www.example.com/admin-submit";
+    </script>
+    </form>
+    
+</div>
