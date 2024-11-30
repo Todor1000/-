@@ -1,45 +1,20 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 using Локален_Бюлетински_Помошник.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Локален_Бюлетински_Помошник.Controllers
 {
-    public class HomeController : Controller
+    public class ProfileController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult Request()
-        {
-            return View();
-        }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
         private readonly string _uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
 
-        // GET: Home/Upload
+        // GET: Profile/Upload
         public IActionResult Upload()
         {
             return View();
         }
 
-        // POST: Home/Upload
+        // POST: Profile/Upload
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload(ImageUploadViewModel model)
@@ -62,13 +37,14 @@ namespace Локален_Бюлетински_Помошник.Controllers
                     await model.Image.CopyToAsync(stream);
                 }
 
-                // Optionally, save file path in the database, associate with user, etc.
+                // Optionally: Save the file path in the database or associate with the logged-in user
                 TempData["Message"] = "Image uploaded successfully!";
                 return RedirectToAction("Upload");
             }
 
             TempData["Message"] = "No image uploaded or file is empty.";
             return View();
+           
         }
     }
 }
