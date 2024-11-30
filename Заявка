@@ -5,7 +5,7 @@
     <form id="myForm" action="https://www.example.com/admin-submit" method="post" enctype="multipart/form-data" onsubmit="return saveData()">
         <label for="fname">Заявка:</label>
         <input type="text" id="fname" name="fname" size="80"><br><br>
-       
+
         <h2>Сложи снимка</h2>
         <label for="imageUpload">Избери снимка:</label>
         <input type="file" id="imageUpload" name="imageUpload" accept="image/*"><br><br>
@@ -33,7 +33,7 @@
         }
 
         // Optionally, load the data from localStorage when the page is loaded
-        window.onload = function() {
+        window.onload = function () {
             // Check if there is stored data in localStorage
             if (localStorage.getItem("fname")) {
                 document.getElementById("fname").value = localStorage.getItem("fname");
