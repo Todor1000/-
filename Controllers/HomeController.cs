@@ -7,7 +7,12 @@ namespace Локален_Бюлетински_Помошник.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+         
+         public IActionResult Indexinfo()
+{
+    return View();
+}
+           
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
